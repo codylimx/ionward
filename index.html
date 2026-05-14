@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IONWARD LTD. | Tech Cloud & ION Labs</title>
     <meta name="description" content="Singapore-based Software Development & Staff Augmentation. Expert FinTech & AI Engineering. Hiring Top Tech Talent in Vietnam." />
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ionward.com/" />
+    <meta property="og:title" content="IONWARD LTD. | Tech Cloud & ION Labs" />
+    <meta property="og:description" content="Singapore-based Software Development & Staff Augmentation. Expert FinTech & AI Engineering. Hiring Top Tech Talent in Vietnam." />
+    <meta property="og:image" content="https://ionward.com/og-preview.png" />
+    <meta property="og:site_name" content="IONWARD LTD." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="IONWARD LTD. | Tech Cloud & ION Labs" />
+    <meta name="twitter:description" content="Singapore-based Software Development & Staff Augmentation. Expert FinTech & AI Engineering." />
+    <meta name="twitter:image" content="https://ionward.com/og-preview.png" />
     
     <!-- Favicon (Teal Logo Mark) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10 A40 40 0 1 0 50 90 A40 40 0 1 0 50 10 Z M50 30 A20 20 0 1 1 50 70 A20 20 0 1 1 50 30 Z' fill='%23008988'/%3E%3Ccircle cx='25' cy='25' r='12' fill='%23008988' opacity='0.8'/%3E%3Ccircle cx='75' cy='75' r='12' fill='%23008988' opacity='0.8'/%3E%3C/svg%3E" />
@@ -118,7 +129,71 @@
       }
     </style>
 
-<link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/index.css">
+
+  <!-- DOM Patches: applied after React renders -->
+  <script>
+    (function () {
+      var patched = { scrollIndicator: false, leadershipLink: false, heroCta: false };
+
+      function applyPatches() {
+        // Patch 1: Scroll indicator — hide on first scroll
+        if (!patched.scrollIndicator) {
+          var bounceEl = document.querySelector('.animate-bounce');
+          if (bounceEl) {
+            var wrapper = bounceEl.closest('.flex.justify-center');
+            if (wrapper) {
+              wrapper.classList.add('ionward-scroll-indicator');
+              window.addEventListener('scroll', function () {
+                wrapper.classList.add('hidden');
+              }, { once: true, passive: true });
+              patched.scrollIndicator = true;
+            }
+          }
+        }
+
+        // Patch 2: Remove "Meet our Leadership Team" link
+        if (!patched.leadershipLink) {
+          var allLinks = document.querySelectorAll('a');
+          for (var i = 0; i < allLinks.length; i++) {
+            if (allLinks[i].textContent.trim() === 'Meet our Leadership Team \u2192') {
+              allLinks[i].style.display = 'none';
+              patched.leadershipLink = true;
+              break;
+            }
+          }
+        }
+
+        // Patch 3: Hero CTA — "Hire Tech Cloud" → "Hire a Developer in 48hrs"
+        if (!patched.heroCta) {
+          var anchors = document.querySelectorAll('a[href="#cloud"]');
+          for (var j = 0; j < anchors.length; j++) {
+            var nodes = anchors[j].childNodes;
+            for (var k = 0; k < nodes.length; k++) {
+              if (nodes[k].nodeType === 3 && nodes[k].textContent.indexOf('Hire Tech Cloud') !== -1) {
+                nodes[k].textContent = 'Hire a Developer in 48hrs ';
+                patched.heroCta = true;
+                break;
+              }
+            }
+          }
+        }
+
+        return patched.scrollIndicator && patched.leadershipLink && patched.heroCta;
+      }
+
+      // Observe DOM until React has rendered all patches
+      var observer = new MutationObserver(function () {
+        if (applyPatches()) observer.disconnect();
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        applyPatches();
+        observer.observe(document.body, { childList: true, subtree: true });
+        setTimeout(function () { observer.disconnect(); }, 8000);
+      });
+    })();
+  </script>
   <script type="importmap">
 {
   "imports": {

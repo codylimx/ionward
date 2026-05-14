@@ -1,0 +1,65 @@
+/* =============================================
+   IONWARD — Custom Overrides & Mobile Fixes
+   ============================================= */
+
+/* Scroll indicator fade transition */
+.ionward-scroll-indicator {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.ionward-scroll-indicator.hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(10px);
+}
+
+/* ---- Mobile Responsive Overrides ---- */
+
+/* Hero heading: prevent overflow on small screens */
+@media (max-width: 640px) {
+  /* Scale down very large hero text */
+  h1 {
+    word-break: break-word;
+  }
+
+  /* Reduce hero padding on mobile */
+  section:first-of-type {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Fix button gap when stacked */
+  .flex.gap-4.flex-wrap {
+    gap: 0.75rem;
+  }
+
+  /* Prevent horizontal scroll from marquee */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Nav spacing fix for mobile */
+  nav {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Grid columns collapse properly */
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  /* Ensure cards don't overflow */
+  .rounded-2xl,
+  .rounded-xl {
+    overflow: hidden;
+  }
+
+  /* Footer grid collapse */
+  footer .grid {
+    grid-template-columns: 1fr;
+  }
+}
