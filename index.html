@@ -208,5 +208,104 @@
 </head>
   <body class="bg-ion-bg text-slate-800 antialiased">
     <div id="root"></div>
+  <!-- Inject: Projects Section + WhatsApp Button -->
+  <script>
+  (function () {
+    var WHATSAPP = '6512345678'; // UPDATE: SG number, no + or spaces
+    var WA_MSG   = encodeURIComponent('Hi IONWARD! I’d like to discuss a project.');
+    var done = false;
+
+    var PROJECTS = [
+      { cat:'FinTech',       cc:'#008988', bg:'rgba(0,137,136,0.1)',  title:'Core Banking Platform',          desc:'Multi-currency ledger with real-time transaction processing & regulatory reporting for a digital bank.',         stack:['Spring Boot','React','PostgreSQL','Kafka','AWS'],       status:'In Progress', sc:'#22c55e' },
+      { cat:'AI / ML',       cc:'#8b5cf6', bg:'rgba(139,92,246,0.1)', title:'KYC / AML Intelligence Engine',  desc:'AI-powered identity verification and anti-money laundering detection with real-time risk scoring.',             stack:['Python','FastAPI','TensorFlow','Redis','Docker'],       status:'Testing',     sc:'#3b82f6' },
+      { cat:'HR Tech',       cc:'#f59e0b', bg:'rgba(245,158,11,0.1)', title:'HRIS & Payroll Engine',          desc:'Integrated HR platform with automated payroll, leave management, and multi-country compliance reporting.',      stack:['Next.js','Node.js','Supabase','TypeScript','Docker'],   status:'Deployed',    sc:'#06b6d4' },
+      { cat:'FinTech',       cc:'#008988', bg:'rgba(0,137,136,0.1)',  title:'Crypto Exchange Infrastructure', desc:'High-frequency trading engine and order book management for a regulated digital asset exchange.',               stack:['Go','Kafka','Kubernetes','gRPC','TimescaleDB'],         status:'In Progress', sc:'#22c55e' },
+      { cat:'RegTech',       cc:'#ec4899', bg:'rgba(236,72,153,0.1)', title:'Regulatory Compliance Suite',    desc:'Automated MAS/SEC reporting and audit trail management with a configurable rule engine.',                       stack:['Java','Spring Boot','Oracle DB','Angular','Jenkins'],   status:'Testing',     sc:'#3b82f6' },
+      { cat:'Data Platform', cc:'#f97316', bg:'rgba(249,115,22,0.1)', title:'Real-time Trading Dashboard',    desc:'Low-latency visualization for live market feeds, portfolio analytics, and risk exposure monitoring.',           stack:['React','WebSocket','TypeScript','D3.js','ClickHouse'],  status:'In Progress', sc:'#22c55e' }
+    ];
+
+    function badge(tech) {
+      return '<span style="display:inline-block;padding:2px 9px;border-radius:9999px;background:rgba(148,163,184,0.08);color:#94a3b8;font-size:11px;font-weight:500;border:1px solid rgba(148,163,184,0.14);margin:2px 2px 2px 0;">' + tech + '</span>';
+    }
+
+    function card(p) {
+      return '<div class="ionward-project-card" style="background:linear-gradient(135deg,rgba(30,41,59,0.85),rgba(15,23,42,0.95));border:1px solid rgba(148,163,184,0.1);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden;">'
+        + '<div style="position:absolute;top:0;left:0;width:3px;height:100%;background:' + p.cc + ';border-radius:16px 0 0 16px;"></div>'
+        + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem;">'
+        + '<span style="padding:3px 11px;border-radius:9999px;background:' + p.bg + ';color:' + p.cc + ';border:1px solid ' + p.cc + '44;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">' + p.cat + '</span>'
+        + '<span style="display:flex;align-items:center;font-size:11px;color:#64748b;"><span style="width:7px;height:7px;border-radius:50%;background:' + p.sc + ';display:inline-block;margin-right:5px;box-shadow:0 0 0 3px ' + p.sc + '22;"></span>' + p.status + '</span>'
+        + '</div>'
+        + '<h3 style="font-size:1.05rem;font-weight:700;color:#f1f5f9;margin-bottom:.5rem;line-height:1.4;font-family:\'Plus Jakarta Sans\',sans-serif;">' + p.title + '</h3>'
+        + '<p style="font-size:.875rem;color:#94a3b8;line-height:1.65;margin-bottom:1rem;">' + p.desc + '</p>'
+        + '<div>' + p.stack.map(badge).join('') + '</div>'
+        + '</div>';
+    }
+
+    function buildSection() {
+      return '<section id="live-projects" style="background:#0f172a;padding:5rem 1.5rem;border-top:1px solid rgba(148,163,184,0.06);">'
+        + '<div style="max-width:1200px;margin:0 auto;">'
+        + '<div style="text-align:center;margin-bottom:3rem;">'
+        + '<span style="display:inline-block;background:rgba(0,137,136,0.12);color:#26a69a;border:1px solid rgba(0,137,136,0.25);padding:5px 16px;border-radius:9999px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.125rem;">Live Projects</span>'
+        + '<h2 style="font-size:clamp(1.75rem,4vw,2.5rem);font-weight:800;color:#f8fafc;margin-bottom:1rem;font-family:\'Plus Jakarta Sans\',sans-serif;line-height:1.2;">What We\'re Building Right Now</h2>'
+        + '<p style="color:#94a3b8;max-width:540px;margin:0 auto;line-height:1.75;font-size:.9375rem;">Real projects at scale. Our engineers are actively shipping across FinTech, AI/ML, and enterprise platforms — client names kept confidential under NDA.</p>'
+        + '</div>'
+        + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;margin-bottom:2.5rem;">'
+        + PROJECTS.map(card).join('')
+        + '</div>'
+        + '<p style="text-align:center;color:#475569;font-size:.8125rem;">All projects are under NDA. Technology stacks and project types are shared for capability demonstration only.</p>'
+        + '</div></section>';
+    }
+
+    function buildWABtn() {
+      return '<a id="ionward-whatsapp-btn" href="https://wa.me/' + WHATSAPP + '?text=' + WA_MSG + '" target="_blank" rel="noopener" title="Chat with us on WhatsApp" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:10px;background:#25d366;color:white;padding:13px 22px;border-radius:9999px;box-shadow:0 4px 20px rgba(37,211,102,0.4);font-family:\'Plus Jakarta Sans\',sans-serif;font-size:14px;font-weight:600;text-decoration:none;transition:all .3s ease;animation:ionward-wa-pulse 3s ease-in-out infinite;">'
+        + '<svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>'
+        + '<span>Chat with us</span></a>';
+    }
+
+    function inject() {
+      if (done) return true;
+
+      // Inject WhatsApp button immediately (no anchor needed)
+      if (!document.getElementById('ionward-whatsapp-btn')) {
+        var wa = document.createElement('div');
+        wa.innerHTML = buildWABtn();
+        document.body.appendChild(wa.firstElementChild);
+      }
+
+      // Find careers section: look for any div containing a careers@ionward link
+      var anchor = document.querySelector('a[href*="careers@ionward"]');
+      if (!anchor) return false;
+
+      // Walk up to find a top-level block (div with no section ancestor, direct child of main container)
+      var block = anchor;
+      while (block.parentElement && block.parentElement !== document.body && !block.parentElement.id) {
+        block = block.parentElement;
+      }
+      // Also try id="open-roles" or similar known ids
+      var target = document.getElementById('open-roles') || document.getElementById('careers') || block;
+      if (!target || !target.parentNode) return false;
+
+      if (document.getElementById('live-projects')) { done = true; return true; } // already injected
+
+      var tmp = document.createElement('div');
+      tmp.innerHTML = buildSection();
+      target.parentNode.insertBefore(tmp.firstElementChild, target);
+      done = true;
+      return true;
+    }
+
+    // Run on DOMContentLoaded and keep observing indefinitely for SPA navigation
+    var obs = new MutationObserver(function () { inject(); });
+    document.addEventListener('DOMContentLoaded', function () {
+      obs.observe(document.body, { childList: true, subtree: true });
+      // Also inject WhatsApp button immediately
+      if (!document.getElementById('ionward-whatsapp-btn')) {
+        var wa = document.createElement('div');
+        wa.innerHTML = buildWABtn();
+        document.body.appendChild(wa.firstElementChild);
+      }
+    });
+  })();
+  </script>
 </body>
 </html>

@@ -2,6 +2,25 @@
    IONWARD — Custom Overrides & Mobile Fixes
    ============================================= */
 
+/* WhatsApp button pulse */
+@keyframes ionward-wa-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+  50% { box-shadow: 0 4px 30px rgba(37,211,102,0.65), 0 0 0 10px rgba(37,211,102,0.08); }
+}
+
+/* Project card hover */
+.ionward-project-card { transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important; }
+.ionward-project-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(148,163,184,0.25) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35) !important;
+}
+
+#ionward-whatsapp-btn:hover {
+  transform: scale(1.06) !important;
+  box-shadow: 0 6px 32px rgba(37,211,102,0.65) !important;
+}
+
 /* Scroll indicator fade transition */
 .ionward-scroll-indicator {
   transition: opacity 0.6s ease, transform 0.6s ease;
