@@ -653,5 +653,21 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      if (isLocal) {
+        var links = document.querySelectorAll('a');
+        for (var i = 0; i < links.length; i++) {
+          var href = links[i].getAttribute('href');
+          if (href === '/privacy') {
+            links[i].setAttribute('href', '/privacy.html');
+          } else if (href === '/terms') {
+            links[i].setAttribute('href', '/terms.html');
+          }
+        }
+      }
+    })();
+  </script>
 </body>
 </html>

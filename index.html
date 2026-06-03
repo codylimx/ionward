@@ -313,7 +313,43 @@
   (function () {
     var legalDone = false;
 
+    function getUrls() {
+      var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      return {
+        privacy: isLocal ? '/privacy.html' : '/privacy',
+        terms: isLocal ? '/terms.html' : '/terms'
+      };
+    }
+
+    function patchReactFooterLinks() {
+      var urls = getUrls();
+      var buttons = document.querySelectorAll('footer button');
+      for (var i = 0; i < buttons.length; i++) {
+        var btn = buttons[i];
+        var text = btn.textContent.trim();
+        if (text === 'Privacy Policy') {
+          (function (url) {
+            btn.onclick = function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              window.location.href = url;
+            };
+          })(urls.privacy);
+        } else if (text === 'Terms of Service' || text === 'Terms & Conditions') {
+          (function (url) {
+            btn.onclick = function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              window.location.href = url;
+            };
+          })(urls.terms);
+        }
+      }
+    }
+
     function injectLegalLinks() {
+      patchReactFooterLinks();
+
       if (legalDone || document.getElementById('ionward-legal-links')) return;
 
       // Look for the footer element or the last block with copyright text
@@ -330,13 +366,14 @@
       }
       if (!footer) return;
 
+      var urls = getUrls();
       var legalBar = document.createElement('div');
       legalBar.id = 'ionward-legal-links';
       legalBar.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;padding:0.75rem 1.5rem;border-top:1px solid rgba(148,163,184,0.08);margin-top:0.5rem;';
       legalBar.innerHTML =
-        '<a href="/privacy" style="color:#64748b;font-size:0.8125rem;text-decoration:none;font-family:\'Plus Jakarta Sans\',sans-serif;transition:color 0.2s;" onmouseover="this.style.color=\'#26A69A\'" onmouseout="this.style.color=\'#64748b\'">Privacy Policy</a>'
+        '<a href="' + urls.privacy + '" style="color:#64748b;font-size:0.8125rem;text-decoration:none;font-family:\'Plus Jakarta Sans\',sans-serif;transition:color 0.2s;" onmouseover="this.style.color=\'#26A69A\'" onmouseout="this.style.color=\'#64748b\'">Privacy Policy</a>'
         + '<span style="color:#334155;font-size:0.75rem;">·</span>'
-        + '<a href="/terms" style="color:#64748b;font-size:0.8125rem;text-decoration:none;font-family:\'Plus Jakarta Sans\',sans-serif;transition:color 0.2s;" onmouseover="this.style.color=\'#26A69A\'" onmouseout="this.style.color=\'#64748b\'">Terms &amp; Conditions</a>'
+        + '<a href="' + urls.terms + '" style="color:#64748b;font-size:0.8125rem;text-decoration:none;font-family:\'Plus Jakarta Sans\',sans-serif;transition:color 0.2s;" onmouseover="this.style.color=\'#26A69A\'" onmouseout="this.style.color=\'#64748b\'">Terms &amp; Conditions</a>'
         + '<span style="color:#334155;font-size:0.75rem;">·</span>'
         + '<span style="color:#334155;font-size:0.8125rem;font-family:\'Plus Jakarta Sans\',sans-serif;">© 2025 IONWARD LTD. Singapore</span>';
 
@@ -348,7 +385,7 @@
     document.addEventListener('DOMContentLoaded', function () {
       injectLegalLinks();
       legalObs.observe(document.body, { childList: true, subtree: true });
-      setTimeout(function () { legalObs.disconnect(); }, 10000);
+      setTimeout(function () { legalObs.disconnect(); }, 12000);
     });
   })();
   </script>
