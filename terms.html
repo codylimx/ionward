@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms &amp; Conditions | IONWARD LTD.</title>
+  <meta name="description" content="Terms and Conditions for IONWARD LTD. — the rules governing use of ionward.com and our services under Singapore law." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ionward.com/terms" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ionward.com/terms" />
+  <meta property="og:title" content="Terms &amp; Conditions | IONWARD LTD." />
+  <meta property="og:description" content="Terms and Conditions governing use of IONWARD LTD. website and services under Singapore law." />
+  <meta property="og:site_name" content="IONWARD LTD." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10 A40 40 0 1 0 50 90 A40 40 0 1 0 50 10 Z M50 30 A20 20 0 1 1 50 70 A20 20 0 1 1 50 30 Z' fill='%23008988'/%3E%3Ccircle cx='25' cy='25' r='12' fill='%23008988' opacity='0.8'/%3E%3Ccircle cx='75' cy='75' r='12' fill='%23008988' opacity='0.8'/%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ion: #008988;
+      --ion-light: #26A69A;
+      --ion-glow: rgba(0,137,136,0.15);
+      --bg-dark: #0f172a;
+      --bg-darker: #020617;
+      --bg-card: rgba(30,41,59,0.6);
+      --border: rgba(148,163,184,0.1);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-darker);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #008988; }
+
+    /* ── Header ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(2,6,23,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--ion-light); }
+
+    /* ── Hero Banner ── */
+    .page-hero {
+      background: linear-gradient(135deg, #020617 0%, #0e1a2e 50%, #061a1a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,137,136,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--ion-glow);
+      color: var(--ion-light);
+      border: 1px solid rgba(0,137,136,0.25);
+      padding: 5px 14px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .page-hero p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .effective-date {
+      margin-top: 1.5rem;
+      display: inline-block;
+      background: rgba(148,163,184,0.06);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 16px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Layout ── */
+    .content-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* ── Sidebar TOC ── */
+    .toc {
+      position: sticky;
+      top: 88px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .toc-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .toc-list a {
+      display: block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      font-size: 0.8125rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      line-height: 1.4;
+    }
+
+    .toc-list a:hover {
+      background: var(--ion-glow);
+      color: var(--ion-light);
+    }
+
+    /* ── Document Body ── */
+    .doc-body section { margin-bottom: 3rem; }
+
+    .doc-body h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.625rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: var(--ion-glow);
+      color: var(--ion-light);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .doc-body p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-size: 0.9375rem;
+    }
+
+    .doc-body ul, .doc-body ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .doc-body li {
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.65;
+    }
+
+    .doc-body strong { color: var(--text-primary); font-weight: 600; }
+
+    .doc-body a {
+      color: var(--ion-light);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(38,166,154,0.3);
+      transition: border-color 0.2s;
+    }
+
+    .doc-body a:hover { border-color: var(--ion-light); }
+
+    /* Callout boxes */
+    .info-box {
+      background: var(--ion-glow);
+      border: 1px solid rgba(0,137,136,0.25);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-box p { color: #a7f3d0; margin-bottom: 0; font-size: 0.875rem; }
+    .info-box strong { color: #6ee7b7; }
+
+    .warn-box {
+      background: rgba(239,68,68,0.07);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .warn-box p { color: #fca5a5; margin-bottom: 0; font-size: 0.875rem; }
+
+    /* Contact card */
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .contact-card strong { color: var(--text-primary); font-size: 1rem; }
+    .contact-card span { color: var(--text-secondary); font-size: 0.875rem; }
+    .contact-card a { color: var(--ion-light); }
+
+    /* ── Footer ── */
+    .site-footer {
+      background: #020617;
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--ion-light); }
+    .footer-links a.active { color: var(--ion-light); }
+
+    .footer-copy { color: var(--text-muted); font-size: 0.8125rem; }
+
+    @media (max-width: 768px) {
+      .content-wrapper { grid-template-columns: 1fr; }
+      .toc { position: static; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo-link">
+        <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 10 A40 40 0 1 0 50 90 A40 40 0 1 0 50 10 Z M50 30 A20 20 0 1 1 50 70 A20 20 0 1 1 50 30 Z" fill="#008988"/>
+          <circle cx="25" cy="25" r="12" fill="#008988" opacity="0.8"/>
+          <circle cx="75" cy="75" r="12" fill="#008988" opacity="0.8"/>
+        </svg>
+        IONWARD
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms" class="active">Terms &amp; Conditions</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <div class="page-hero">
+    <div class="page-hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+      Legal
+    </div>
+    <h1>Terms &amp; Conditions</h1>
+    <p>These terms govern your use of the IONWARD LTD. website and services. By accessing our website, you agree to be bound by these terms under Singapore law.</p>
+    <span class="effective-date">Effective Date: 1 June 2025 &nbsp;·&nbsp; Last Updated: 1 June 2025</span>
+  </div>
+
+  <!-- ── Main ── -->
+  <main class="content-wrapper">
+
+    <!-- TOC -->
+    <aside class="toc">
+      <div class="toc-title">Contents</div>
+      <ul class="toc-list">
+        <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+        <li><a href="#about">2. About IONWARD</a></li>
+        <li><a href="#services">3. Our Services</a></li>
+        <li><a href="#website-use">4. Website Use</a></li>
+        <li><a href="#ip">5. Intellectual Property</a></li>
+        <li><a href="#confidentiality">6. Confidentiality</a></li>
+        <li><a href="#disclaimer">7. Disclaimer</a></li>
+        <li><a href="#liability">8. Limitation of Liability</a></li>
+        <li><a href="#indemnity">9. Indemnification</a></li>
+        <li><a href="#links">10. Third-Party Links</a></li>
+        <li><a href="#governing-law">11. Governing Law</a></li>
+        <li><a href="#disputes">12. Dispute Resolution</a></li>
+        <li><a href="#amendments">13. Amendments</a></li>
+        <li><a href="#contact">14. Contact</a></li>
+      </ul>
+    </aside>
+
+    <!-- Document -->
+    <article class="doc-body">
+
+      <section id="acceptance">
+        <h2><span class="section-num">1</span> Acceptance of Terms</h2>
+        <div class="info-box">
+          <p>By accessing or using the website at <strong>ionward.com</strong> (the "Website"), you agree to be legally bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, please do not access or use the Website.</p>
+        </div>
+        <p>These Terms apply to all visitors, users, clients, and prospective clients. They should be read alongside our <a href="/privacy">Privacy Policy</a>, which is incorporated by reference into these Terms.</p>
+        <p>These Terms constitute a legally binding agreement between you and <strong>IONWARD LTD.</strong> ("IONWARD", "we", "our", "us").</p>
+      </section>
+
+      <section id="about">
+        <h2><span class="section-num">2</span> About IONWARD LTD.</h2>
+        <p>IONWARD LTD. is a technology company incorporated in <strong>Singapore</strong>. We specialise in software development, staff augmentation, FinTech engineering, AI/ML solutions, and enterprise technology consulting.</p>
+        <p>Our operational team is based across Singapore and Vietnam, serving clients globally with a focus on the Asia-Pacific region.</p>
+      </section>
+
+      <section id="services">
+        <h2><span class="section-num">3</span> Our Services</h2>
+        <p>The Website provides information about IONWARD's services, including but not limited to:</p>
+        <ul>
+          <li><strong>Tech Cloud (Staff Augmentation)</strong> — placement of vetted software engineers and technical professionals with client organisations on a contract or full-time basis.</li>
+          <li><strong>ION Labs (Software Development)</strong> — custom software design, development, testing, and delivery services.</li>
+          <li><strong>FinTech Engineering</strong> — specialised development for financial services technology, including core banking, payments, and regulatory compliance systems.</li>
+          <li><strong>AI / ML Solutions</strong> — machine learning model development, data pipeline engineering, and AI product integration.</li>
+        </ul>
+        <p>Specific service engagements are governed by separate <strong>Master Service Agreements (MSA)</strong>, Statements of Work (SOW), or Service Contracts entered into between IONWARD and the client. In the event of any conflict between these Terms and a signed service contract, the signed service contract shall prevail.</p>
+      </section>
+
+      <section id="website-use">
+        <h2><span class="section-num">4</span> Acceptable Use of the Website</h2>
+        <p>You agree to use the Website only for lawful purposes and in compliance with these Terms. You must not:</p>
+        <ul>
+          <li>Use the Website in any way that violates Singapore law, applicable international laws, or regulations.</li>
+          <li>Transmit any unsolicited or unauthorised advertising or promotional material (spam).</li>
+          <li>Attempt to gain unauthorised access to any part of the Website, its servers, or any third-party systems connected to the Website.</li>
+          <li>Introduce malware, viruses, Trojan horses, worms, or other malicious or technologically harmful material.</li>
+          <li>Scrape, crawl, or data-mine the Website without our express written permission.</li>
+          <li>Impersonate IONWARD, its employees, partners, or any other person or entity.</li>
+          <li>Use the Website to harm, threaten, harass, or discriminate against any individual or group.</li>
+        </ul>
+        <p>We reserve the right to restrict or terminate your access to the Website at any time, without notice, if we believe you have violated these Terms.</p>
+      </section>
+
+      <section id="ip">
+        <h2><span class="section-num">5</span> Intellectual Property Rights</h2>
+        <p>All content on the Website, including but not limited to text, graphics, logos, icons, images, audio clips, software code, and the compilation thereof, is the <strong>exclusive property of IONWARD LTD.</strong> or our licensors and is protected under Singapore's <strong>Copyright Act 2021</strong> and applicable international intellectual property laws.</p>
+        <p>You are granted a limited, non-exclusive, non-transferable, revocable licence to access and view the Website for personal, non-commercial informational purposes only. You must not:</p>
+        <ul>
+          <li>Reproduce, distribute, publicly display, or create derivative works of any Website content without our prior written consent.</li>
+          <li>Reverse engineer, decompile, or disassemble any software forming part of the Website.</li>
+          <li>Remove or alter any copyright, trademark, or proprietary notices on the Website.</li>
+        </ul>
+        <p>The IONWARD name, logo, and related marks are trademarks of IONWARD LTD. Unauthorised use is strictly prohibited.</p>
+      </section>
+
+      <section id="confidentiality">
+        <h2><span class="section-num">6</span> Confidentiality</h2>
+        <p>Information you share with IONWARD during business discussions, project briefs, or service engagements may be commercially sensitive. IONWARD treats all such information as <strong>confidential</strong> and will not disclose it to third parties without your consent, except:</p>
+        <ul>
+          <li>As required by Singapore law, a court order, or regulatory authority.</li>
+          <li>To our employees, contractors, or advisors who need the information to perform services, subject to confidentiality obligations.</li>
+        </ul>
+        <p>Where a mutual Non-Disclosure Agreement (NDA) is required for your engagement, we are happy to execute one prior to sharing sensitive project details.</p>
+        <p>All client project information shared in our <strong>"What We're Building"</strong> section on the Website is presented in anonymised form and does not identify clients or disclose proprietary details. Technology stacks are shared for capability demonstration only.</p>
+      </section>
+
+      <section id="disclaimer">
+        <h2><span class="section-num">7</span> Disclaimer of Warranties</h2>
+        <p>The Website and its content are provided on an <strong>"as is" and "as available"</strong> basis, without warranties of any kind, either express or implied, including but not limited to:</p>
+        <ul>
+          <li>Implied warranties of merchantability, fitness for a particular purpose, or non-infringement.</li>
+          <li>Warranties that the Website will be uninterrupted, error-free, or free of viruses or other harmful components.</li>
+          <li>Warranties regarding the accuracy, completeness, or timeliness of any content on the Website.</li>
+        </ul>
+        <p>Nothing on this Website constitutes professional advice (legal, financial, tax, or otherwise). You should seek appropriate professional advice before making any decision based on information found on this Website.</p>
+      </section>
+
+      <section id="liability">
+        <h2><span class="section-num">8</span> Limitation of Liability</h2>
+        <div class="warn-box">
+          <p>⚠️ <strong>Important:</strong> To the fullest extent permitted by Singapore law, IONWARD LTD.'s total liability to you for any claim arising from your use of the Website shall not exceed <strong>SGD 500</strong>.</p>
+        </div>
+        <p>In no event shall IONWARD LTD., its directors, employees, partners, agents, suppliers, or affiliates be liable for any:</p>
+        <ul>
+          <li>Indirect, incidental, special, consequential, or punitive damages.</li>
+          <li>Loss of profits, revenue, data, goodwill, or business opportunities.</li>
+          <li>Damages resulting from unauthorised access to or alteration of your transmissions or data.</li>
+          <li>Damages arising from your reliance on information obtained through the Website.</li>
+        </ul>
+        <p>Some jurisdictions do not allow the exclusion of certain warranties or limitation of liability for certain types of damages. In such jurisdictions, our liability shall be limited to the fullest extent permitted by applicable law.</p>
+        <p>Nothing in these Terms limits liability for death or personal injury caused by negligence, fraud, or fraudulent misrepresentation, or any other liability that cannot be excluded by law.</p>
+      </section>
+
+      <section id="indemnity">
+        <h2><span class="section-num">9</span> Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless IONWARD LTD. and its directors, officers, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable legal fees) arising out of or in connection with:</p>
+        <ul>
+          <li>Your use of or access to the Website.</li>
+          <li>Your violation of these Terms.</li>
+          <li>Your violation of any third-party rights, including intellectual property or privacy rights.</li>
+          <li>Any content you submit through the Website or in communications with us.</li>
+        </ul>
+      </section>
+
+      <section id="links">
+        <h2><span class="section-num">10</span> Third-Party Links</h2>
+        <p>The Website may contain links to third-party websites, services, or resources. These links are provided for convenience only. IONWARD does not endorse, control, or take responsibility for the content, privacy practices, or terms of any third-party websites.</p>
+        <p>You access third-party websites entirely at your own risk. We encourage you to review the privacy policies and terms of any third-party sites you visit.</p>
+      </section>
+
+      <section id="governing-law">
+        <h2><span class="section-num">11</span> Governing Law</h2>
+        <p>These Terms and any dispute or claim arising out of or in connection with them (including non-contractual disputes or claims) shall be governed by and construed in accordance with the <strong>laws of Singapore</strong>, without regard to its conflict of law principles.</p>
+        <p>The courts of Singapore shall have exclusive jurisdiction over any disputes arising from or relating to these Terms or your use of the Website, subject to Clause 12 below.</p>
+      </section>
+
+      <section id="disputes">
+        <h2><span class="section-num">12</span> Dispute Resolution</h2>
+        <p>We encourage parties to resolve disputes amicably. In the event of any dispute arising from these Terms or your use of our services, the parties shall:</p>
+        <ol>
+          <li><strong>Good Faith Negotiation</strong> — The parties shall first attempt to resolve the dispute through good faith negotiation for a period of <strong>30 days</strong> from written notice of the dispute.</li>
+          <li><strong>Mediation</strong> — If negotiation fails, either party may refer the dispute to mediation at the <strong>Singapore Mediation Centre (SMC)</strong> under its prevailing rules.</li>
+          <li><strong>Litigation</strong> — If mediation is unsuccessful, either party may commence legal proceedings in the courts of Singapore.</li>
+        </ol>
+        <p>For disputes relating to service contracts valued at or under <strong>SGD 20,000</strong>, either party may refer the matter to the <strong>Small Claims Tribunal of Singapore</strong> where applicable.</p>
+      </section>
+
+      <section id="amendments">
+        <h2><span class="section-num">13</span> Amendments</h2>
+        <p>IONWARD reserves the right to modify these Terms at any time. Updated Terms will be posted on this page with a revised "Last Updated" date. Material changes will be communicated by reasonable means (e.g., a prominent notice on the Website).</p>
+        <p>Your continued use of the Website after the effective date of any revised Terms constitutes your acceptance of the updated Terms. If you do not agree to the revised Terms, you must discontinue using the Website.</p>
+      </section>
+
+      <section id="contact">
+        <h2><span class="section-num">14</span> Contact Us</h2>
+        <p>For any questions or concerns regarding these Terms and Conditions, please contact us:</p>
+        <div class="contact-card">
+          <strong>IONWARD LTD.</strong>
+          <span>📧 Email: <a href="mailto:legal@ionward.com">legal@ionward.com</a></span>
+          <span>📧 General: <a href="mailto:hello@ionward.com">hello@ionward.com</a></span>
+          <span>🌐 Website: <a href="https://ionward.com">ionward.com</a></span>
+          <span>📍 Registered Address: Singapore</span>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links">
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms" class="active">Terms &amp; Conditions</a>
+        <a href="mailto:hello@ionward.com">Contact</a>
+      </nav>
+      <p class="footer-copy">© 2025 IONWARD LTD. All rights reserved. Incorporated in Singapore.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

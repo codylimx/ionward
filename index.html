@@ -307,5 +307,58 @@
     });
   })();
   </script>
+
+  <!-- Inject: Legal footer links into React-rendered footer -->
+  <script>
+  (function () {
+    var legalDone = false;
+
+    function injectLegalLinks() {
+      if (legalDone || document.getElementById('ionward-legal-links')) return;
+
+      // Look for the footer element or the last block with copyright text
+      var footer = document.querySelector('footer') || document.querySelector('[class*="footer"]');
+      if (!footer) {
+        // Try finding copyright text as a fallback anchor
+        var allEls = document.querySelectorAll('p, div, span');
+        for (var i = allEls.length - 1; i >= 0; i--) {
+          if (allEls[i].textContent.indexOf('IONWARD') !== -1 && allEls[i].textContent.indexOf('©') !== -1) {
+            footer = allEls[i].closest('div, footer, section') || allEls[i].parentElement;
+            break;
+          }
+        }
+      }
+      if (!footer) return;
+
+      var legalBar = document.createElement('div');
+      legalBar.id = 'ionward-legal-links';
+      legalBar.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;padding:0.75rem 1.5rem;border-top:1px solid rgba(148,163,184,0.08);margin-top:0.5rem;';
+      legalBar.innerHTML =
+        '<a href="/privacy" style="color:#64748b;font-size:0.8125rem;text-decoration:none;font-family:\'Plus Jakarta Sans\',sans-serif;transition:color 0.2s;" onmouseover="this.style.color=\'#26A69A\'" onmouseout="this.style.color=\'#64748b\'">Privacy Policy</a>'
+        + '<span style="color:#334155;font-size:0.75rem;">·</span>'
+        + '<a href="/terms" style="color:#64748b;font-size:0.8125rem;text-decoration:none;font-family:\'Plus Jakarta Sans\',sans-serif;transition:color 0.2s;" onmouseover="this.style.color=\'#26A69A\'" onmouseout="this.style.color=\'#64748b\'">Terms &amp; Conditions</a>'
+        + '<span style="color:#334155;font-size:0.75rem;">·</span>'
+        + '<span style="color:#334155;font-size:0.8125rem;font-family:\'Plus Jakarta Sans\',sans-serif;">© 2025 IONWARD LTD. Singapore</span>';
+
+      footer.appendChild(legalBar);
+      legalDone = true;
+    }
+
+    var legalObs = new MutationObserver(function () { injectLegalLinks(); });
+    document.addEventListener('DOMContentLoaded', function () {
+      injectLegalLinks();
+      legalObs.observe(document.body, { childList: true, subtree: true });
+      setTimeout(function () { legalObs.disconnect(); }, 10000);
+    });
+  })();
+  </script>
+
+  <style>
+    /* WhatsApp pulse animation */
+    @keyframes ionward-wa-pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 32px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); }
+    }
+  </style>
 </body>
 </html>
