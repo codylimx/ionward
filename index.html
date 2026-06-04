@@ -1,401 +1,846 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IONWARD LTD. | Tech Cloud & ION Labs</title>
-    <meta name="description" content="Singapore-based Software Development & Staff Augmentation. Expert FinTech & AI Engineering. Hiring Top Tech Talent in Vietnam." />
-    <!-- Open Graph / Social Preview -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ionward.com/" />
-    <meta property="og:title" content="IONWARD LTD. | Tech Cloud & ION Labs" />
-    <meta property="og:description" content="Singapore-based Software Development & Staff Augmentation. Expert FinTech & AI Engineering. Hiring Top Tech Talent in Vietnam." />
-    <meta property="og:image" content="https://ionward.com/og-preview.png" />
-    <meta property="og:site_name" content="IONWARD LTD." />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="IONWARD LTD. | Tech Cloud & ION Labs" />
-    <meta name="twitter:description" content="Singapore-based Software Development & Staff Augmentation. Expert FinTech & AI Engineering." />
-    <meta name="twitter:image" content="https://ionward.com/og-preview.png" />
-    
-    <!-- Favicon (Teal Logo Mark) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10 A40 40 0 1 0 50 90 A40 40 0 1 0 50 10 Z M50 30 A20 20 0 1 1 50 70 A20 20 0 1 1 50 30 Z' fill='%23008988'/%3E%3Ccircle cx='25' cy='25' r='12' fill='%23008988' opacity='0.8'/%3E%3Ccircle cx='75' cy='75' r='12' fill='%23008988' opacity='0.8'/%3E%3C/svg%3E" />
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Tailwind Config for Custom Colors and Animations -->
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            },
-            colors: {
-              ion: {
-                DEFAULT: '#008988', // Based on the teal logo provided
-                light: '#26A69A',
-                dark: '#00695C',
-                bg: '#F8FAFC',
-              },
-              slate: {
-                850: '#1e293b', 
-                900: '#0f172a',
-                950: '#020617',
-              }
-            },
-            animation: {
-              'gradient-slow': 'gradient 15s ease infinite',
-              'float': 'float 6s ease-in-out infinite',
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'scroll': 'scroll 40s linear infinite',
-              'fade-in': 'fadeIn 0.5s ease-out forwards',
-            },
-            keyframes: {
-              gradient: {
-                '0%, 100%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'left center'
-                },
-                '50%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'right center'
-                },
-              },
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-20px)' },
-              },
-              scroll: {
-                '0%': { transform: 'translateX(0)' },
-                '100%': { transform: 'translateX(-50%)' },
-              },
-              fadeIn: {
-                '0%': { opacity: '0', transform: 'translateY(10px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              shimmer: {
-                '100%': { transform: 'translateX(100%)' }
-              }
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      /* Smooth scrolling */
-      html {
-        scroll-behavior: smooth;
-      }
-
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 10px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #f1f5f9; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #94a3b8; 
-        border-radius: 5px;
-        border: 2px solid #f1f5f9;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #64748b; 
-      }
-      
-      /* Custom utility for the subtle hero background */
-      .hero-gradient {
-        background: linear-gradient(-45deg, #020617, #0f2e2e, #1e293b, #113030);
-        background-size: 300% 300%;
-        animation: hero-gradient-animation 30s ease-in-out infinite alternate;
-      }
-
-      @keyframes hero-gradient-animation {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-    </style>
-
-  <link rel="stylesheet" href="/index.css">
-
-  <!-- DOM Patches: applied after React renders -->
-  <script>
-    (function () {
-      var patched = { scrollIndicator: false, leadershipLink: false, heroCta: false };
-
-      function applyPatches() {
-        // Patch 1: Scroll indicator — hide on first scroll
-        if (!patched.scrollIndicator) {
-          var bounceEl = document.querySelector('.animate-bounce');
-          if (bounceEl) {
-            var wrapper = bounceEl.closest('.flex.justify-center');
-            if (wrapper) {
-              wrapper.classList.add('ionward-scroll-indicator');
-              window.addEventListener('scroll', function () {
-                wrapper.classList.add('hidden');
-              }, { once: true, passive: true });
-              patched.scrollIndicator = true;
-            }
-          }
-        }
-
-        // Patch 2: Remove "Meet our Leadership Team" link
-        if (!patched.leadershipLink) {
-          var allLinks = document.querySelectorAll('a');
-          for (var i = 0; i < allLinks.length; i++) {
-            if (allLinks[i].textContent.trim() === 'Meet our Leadership Team \u2192') {
-              allLinks[i].style.display = 'none';
-              patched.leadershipLink = true;
-              break;
-            }
-          }
-        }
-
-        // Patch 3: Hero CTA — "Hire Tech Cloud" → "Hire a Developer in 48hrs"
-        if (!patched.heroCta) {
-          var anchors = document.querySelectorAll('a[href="#cloud"]');
-          for (var j = 0; j < anchors.length; j++) {
-            var nodes = anchors[j].childNodes;
-            for (var k = 0; k < nodes.length; k++) {
-              if (nodes[k].nodeType === 3 && nodes[k].textContent.indexOf('Hire Tech Cloud') !== -1) {
-                nodes[k].textContent = 'Hire a Developer in 48hrs ';
-                patched.heroCta = true;
-                break;
-              }
-            }
-          }
-        }
-
-        return patched.scrollIndicator && patched.leadershipLink && patched.heroCta;
-      }
-
-      // Observe DOM until React has rendered all patches
-      var observer = new MutationObserver(function () {
-        if (applyPatches()) observer.disconnect();
-      });
-
-      document.addEventListener('DOMContentLoaded', function () {
-        applyPatches();
-        observer.observe(document.body, { childList: true, subtree: true });
-        setTimeout(function () { observer.disconnect(); }, 8000);
-      });
-    })();
-  </script>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3"
-  }
-}
-</script>
-  <script type="module" crossorigin src="/assets/index-W-y3HsXq.js"></script>
-</head>
-  <body class="bg-ion-bg text-slate-800 antialiased">
-    <div id="root"></div>
-  <!-- Inject: Projects Section + WhatsApp Button -->
-  <script>
-  (function () {
-    var WHATSAPP = '6512345678'; // UPDATE: SG number, no + or spaces
-    var WA_MSG   = encodeURIComponent('Hi IONWARD! I’d like to discuss a project.');
-    var done = false;
-
-    var PROJECTS = [
-      { cat:'FinTech',       cc:'#008988', bg:'rgba(0,137,136,0.1)',  title:'Core Banking Platform',          desc:'Multi-currency ledger with real-time transaction processing & regulatory reporting for a digital bank.',         stack:['Spring Boot','React','PostgreSQL','Kafka','AWS'],       status:'In Progress', sc:'#22c55e' },
-      { cat:'AI / ML',       cc:'#8b5cf6', bg:'rgba(139,92,246,0.1)', title:'KYC / AML Intelligence Engine',  desc:'AI-powered identity verification and anti-money laundering detection with real-time risk scoring.',             stack:['Python','FastAPI','TensorFlow','Redis','Docker'],       status:'Testing',     sc:'#3b82f6' },
-      { cat:'HR Tech',       cc:'#f59e0b', bg:'rgba(245,158,11,0.1)', title:'HRIS & Payroll Engine',          desc:'Integrated HR platform with automated payroll, leave management, and multi-country compliance reporting.',      stack:['Next.js','Node.js','Supabase','TypeScript','Docker'],   status:'Deployed',    sc:'#06b6d4' },
-      { cat:'FinTech',       cc:'#008988', bg:'rgba(0,137,136,0.1)',  title:'Crypto Exchange Infrastructure', desc:'High-frequency trading engine and order book management for a regulated digital asset exchange.',               stack:['Go','Kafka','Kubernetes','gRPC','TimescaleDB'],         status:'In Progress', sc:'#22c55e' },
-      { cat:'RegTech',       cc:'#ec4899', bg:'rgba(236,72,153,0.1)', title:'Regulatory Compliance Suite',    desc:'Automated MAS/SEC reporting and audit trail management with a configurable rule engine.',                       stack:['Java','Spring Boot','Oracle DB','Angular','Jenkins'],   status:'Testing',     sc:'#3b82f6' },
-      { cat:'Data Platform', cc:'#f97316', bg:'rgba(249,115,22,0.1)', title:'Real-time Trading Dashboard',    desc:'Low-latency visualization for live market feeds, portfolio analytics, and risk exposure monitoring.',           stack:['React','WebSocket','TypeScript','D3.js','ClickHouse'],  status:'In Progress', sc:'#22c55e' }
-    ];
-
-    function badge(tech) {
-      return '<span style="display:inline-block;padding:2px 9px;border-radius:9999px;background:rgba(148,163,184,0.08);color:#94a3b8;font-size:11px;font-weight:500;border:1px solid rgba(148,163,184,0.14);margin:2px 2px 2px 0;">' + tech + '</span>';
-    }
-
-    function card(p) {
-      return '<div class="ionward-project-card" style="background:linear-gradient(135deg,rgba(30,41,59,0.85),rgba(15,23,42,0.95));border:1px solid rgba(148,163,184,0.1);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden;">'
-        + '<div style="position:absolute;top:0;left:0;width:3px;height:100%;background:' + p.cc + ';border-radius:16px 0 0 16px;"></div>'
-        + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem;">'
-        + '<span style="padding:3px 11px;border-radius:9999px;background:' + p.bg + ';color:' + p.cc + ';border:1px solid ' + p.cc + '44;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">' + p.cat + '</span>'
-        + '<span style="display:flex;align-items:center;font-size:11px;color:#64748b;"><span style="width:7px;height:7px;border-radius:50%;background:' + p.sc + ';display:inline-block;margin-right:5px;box-shadow:0 0 0 3px ' + p.sc + '22;"></span>' + p.status + '</span>'
-        + '</div>'
-        + '<h3 style="font-size:1.05rem;font-weight:700;color:#f1f5f9;margin-bottom:.5rem;line-height:1.4;font-family:\'Plus Jakarta Sans\',sans-serif;">' + p.title + '</h3>'
-        + '<p style="font-size:.875rem;color:#94a3b8;line-height:1.65;margin-bottom:1rem;">' + p.desc + '</p>'
-        + '<div>' + p.stack.map(badge).join('') + '</div>'
-        + '</div>';
-    }
-
-    function buildSection() {
-      return '<section id="live-projects" style="background:#0f172a;padding:5rem 1.5rem;border-top:1px solid rgba(148,163,184,0.06);">'
-        + '<div style="max-width:1200px;margin:0 auto;">'
-        + '<div style="text-align:center;margin-bottom:3rem;">'
-        + '<span style="display:inline-block;background:rgba(0,137,136,0.12);color:#26a69a;border:1px solid rgba(0,137,136,0.25);padding:5px 16px;border-radius:9999px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.125rem;">Live Projects</span>'
-        + '<h2 style="font-size:clamp(1.75rem,4vw,2.5rem);font-weight:800;color:#f8fafc;margin-bottom:1rem;font-family:\'Plus Jakarta Sans\',sans-serif;line-height:1.2;">What We\'re Building Right Now</h2>'
-        + '<p style="color:#94a3b8;max-width:540px;margin:0 auto;line-height:1.75;font-size:.9375rem;">Real projects at scale. Our engineers are actively shipping across FinTech, AI/ML, and enterprise platforms — client names kept confidential under NDA.</p>'
-        + '</div>'
-        + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;margin-bottom:2.5rem;">'
-        + PROJECTS.map(card).join('')
-        + '</div>'
-        + '<p style="text-align:center;color:#475569;font-size:.8125rem;">All projects are under NDA. Technology stacks and project types are shared for capability demonstration only.</p>'
-        + '</div></section>';
-    }
-
-    function buildWABtn() {
-      return '<a id="ionward-whatsapp-btn" href="https://wa.me/' + WHATSAPP + '?text=' + WA_MSG + '" target="_blank" rel="noopener" title="Chat with us on WhatsApp" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:10px;background:#25d366;color:white;padding:13px 22px;border-radius:9999px;box-shadow:0 4px 20px rgba(37,211,102,0.4);font-family:\'Plus Jakarta Sans\',sans-serif;font-size:14px;font-weight:600;text-decoration:none;transition:all .3s ease;animation:ionward-wa-pulse 3s ease-in-out infinite;">'
-        + '<svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>'
-        + '<span>Chat with us</span></a>';
-    }
-
-    function inject() {
-      if (done) return true;
-
-      // Inject WhatsApp button immediately (no anchor needed)
-      if (!document.getElementById('ionward-whatsapp-btn')) {
-        var wa = document.createElement('div');
-        wa.innerHTML = buildWABtn();
-        document.body.appendChild(wa.firstElementChild);
-      }
-
-      // Find careers section: look for any div containing a careers@ionward link
-      var anchor = document.querySelector('a[href*="careers@ionward"]');
-      if (!anchor) return false;
-
-      // Walk up to find a top-level block (div with no section ancestor, direct child of main container)
-      var block = anchor;
-      while (block.parentElement && block.parentElement !== document.body && !block.parentElement.id) {
-        block = block.parentElement;
-      }
-      // Also try id="open-roles" or similar known ids
-      var target = document.getElementById('open-roles') || document.getElementById('careers') || block;
-      if (!target || !target.parentNode) return false;
-
-      if (document.getElementById('live-projects')) { done = true; return true; } // already injected
-
-      var tmp = document.createElement('div');
-      tmp.innerHTML = buildSection();
-      target.parentNode.insertBefore(tmp.firstElementChild, target);
-      done = true;
-      return true;
-    }
-
-    // Run on DOMContentLoaded and keep observing indefinitely for SPA navigation
-    var obs = new MutationObserver(function () { inject(); });
-    document.addEventListener('DOMContentLoaded', function () {
-      obs.observe(document.body, { childList: true, subtree: true });
-      // Also inject WhatsApp button immediately
-      if (!document.getElementById('ionward-whatsapp-btn')) {
-        var wa = document.createElement('div');
-        wa.innerHTML = buildWABtn();
-        document.body.appendChild(wa.firstElementChild);
-      }
-    });
-  })();
-  </script>
-
-  <!-- Inject: Legal footer links into React-rendered footer -->
-  <script>
-  (function () {
-    var legalDone = false;
-
-    function getUrls() {
-      var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      return {
-        privacy: isLocal ? '/privacy.html' : '/privacy',
-        terms: isLocal ? '/terms.html' : '/terms'
-      };
-    }
-
-    function patchReactFooterLinks() {
-      var urls = getUrls();
-      var buttons = document.querySelectorAll('footer button');
-      for (var i = 0; i < buttons.length; i++) {
-        var btn = buttons[i];
-        var text = btn.textContent.trim();
-        if (text === 'Privacy Policy') {
-          (function (url) {
-            btn.onclick = function (e) {
-              e.preventDefault();
-              e.stopPropagation();
-              window.location.href = url;
-            };
-          })(urls.privacy);
-        } else if (text === 'Terms of Service' || text === 'Terms & Conditions') {
-          (function (url) {
-            btn.onclick = function (e) {
-              e.preventDefault();
-              e.stopPropagation();
-              window.location.href = url;
-            };
-          })(urls.terms);
-        }
-      }
-    }
-
-    function injectLegalLinks() {
-      patchReactFooterLinks();
-
-      if (legalDone || document.getElementById('ionward-legal-links')) return;
-
-      // Look for the footer element or the last block with copyright text
-      var footer = document.querySelector('footer') || document.querySelector('[class*="footer"]');
-      if (!footer) {
-        // Try finding copyright text as a fallback anchor
-        var allEls = document.querySelectorAll('p, div, span');
-        for (var i = allEls.length - 1; i >= 0; i--) {
-          if (allEls[i].textContent.indexOf('IONWARD') !== -1 && allEls[i].textContent.indexOf('©') !== -1) {
-            footer = allEls[i].closest('div, footer, section') || allEls[i].parentElement;
-            break;
-          }
-        }
-      }
-      if (!footer) return;
-
-      var urls = getUrls();
-      var legalBar = document.createElement('div');
-      legalBar.id = 'ionward-legal-links';
-      legalBar.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;padding:0.75rem 1.5rem;border-top:1px solid rgba(148,163,184,0.08);margin-top:0.5rem;';
-      legalBar.innerHTML =
-        '<a href="' + urls.privacy + '" style="color:#64748b;font-size:0.8125rem;text-decoration:none;font-family:\'Plus Jakarta Sans\',sans-serif;transition:color 0.2s;" onmouseover="this.style.color=\'#26A69A\'" onmouseout="this.style.color=\'#64748b\'">Privacy Policy</a>'
-        + '<span style="color:#334155;font-size:0.75rem;">·</span>'
-        + '<a href="' + urls.terms + '" style="color:#64748b;font-size:0.8125rem;text-decoration:none;font-family:\'Plus Jakarta Sans\',sans-serif;transition:color 0.2s;" onmouseover="this.style.color=\'#26A69A\'" onmouseout="this.style.color=\'#64748b\'">Terms &amp; Conditions</a>'
-        + '<span style="color:#334155;font-size:0.75rem;">·</span>'
-        + '<span style="color:#334155;font-size:0.8125rem;font-family:\'Plus Jakarta Sans\',sans-serif;">© 2026 IONWARD LTD. Singapore</span>';
-
-      footer.appendChild(legalBar);
-      legalDone = true;
-    }
-
-    var legalObs = new MutationObserver(function () { injectLegalLinks(); });
-    document.addEventListener('DOMContentLoaded', function () {
-      injectLegalLinks();
-      legalObs.observe(document.body, { childList: true, subtree: true });
-      setTimeout(function () { legalObs.disconnect(); }, 12000);
-    });
-  })();
-  </script>
-
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IONWARD LTD. | Software Development & Talent Solutions</title>
+  <meta name="description" content="Singapore-based software development, staff augmentation & EOR services. Elite tech talent across Southeast Asia. FinTech, AI, Enterprise." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ionward.com/" />
+  <meta property="og:title" content="IONWARD LTD. | Software Development & Talent Solutions" />
+  <meta property="og:description" content="Singapore-based software development, staff augmentation & EOR. Elite tech talent across Southeast Asia." />
+  <meta property="og:site_name" content="IONWARD LTD." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10 A40 40 0 1 0 50 90 A40 40 0 1 0 50 10 Z M50 30 A20 20 0 1 1 50 70 A20 20 0 1 1 50 30 Z' fill='%23008988'/%3E%3Ccircle cx='25' cy='25' r='12' fill='%23008988' opacity='0.8'/%3E%3Ccircle cx='75' cy='75' r='12' fill='%23008988' opacity='0.8'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* WhatsApp pulse animation */
-    @keyframes ionward-wa-pulse {
-      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
-      50% { box-shadow: 0 4px 32px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); }
+    /* ═══════════════════════════════════════════════
+       IONWARD Design System
+       ═══════════════════════════════════════════════ */
+    :root {
+      --ion: #008988;
+      --ion-light: #26A69A;
+      --ion-dark: #00695C;
+      --ion-glow: rgba(0,137,136,0.15);
+      --bg-deep: #020617;
+      --bg-dark: #0f172a;
+      --bg-card: rgba(15,23,42,0.8);
+      --bg-light: #ffffff;
+      --bg-muted: #f8fafc;
+      --border: rgba(148,163,184,0.1);
+      --border-light: rgba(148,163,184,0.15);
+      --border-hover: rgba(148,163,184,0.3);
+      --text: #f8fafc;
+      --text-dark: #0f172a;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --indigo: #6366f1;
+      --purple: #a855f7;
+      --green: #22c55e;
+      --blue: #3b82f6;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --cyan: #06b6d4;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-full: 9999px;
+      --transition: 250ms cubic-bezier(0.4,0,0.2,1);
+      --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --max-w: 1200px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { font-family: var(--font); background: var(--bg-deep); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; border: none; background: none; cursor: pointer; color: inherit; }
+    ul { list-style: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--ion); }
+
+    /* ── Utilities ── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+    .section-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 16px; border-radius: var(--radius-full); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .section-badge--teal { background: var(--ion-glow); color: var(--ion-light); border: 1px solid rgba(0,137,136,0.25); }
+    .section-badge--white { background: rgba(255,255,255,0.06); color: var(--text-secondary); border: 1px solid var(--border); }
+    .section-title { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+    .section-desc { font-size: 1.0625rem; line-height: 1.75; max-width: 640px; margin: 0 auto 3rem; }
+    .text-center { text-align: center; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Navigation ── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 0; transition: all var(--transition); }
+    .nav.scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.06); padding: 0.75rem 0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .nav-logo svg { height: 32px; width: 32px; }
+    .nav-logo span { font-weight: 800; font-size: 1.125rem; letter-spacing: 0.05em; }
+    .nav-logo, .nav-links a, .nav-links button { color: white; transition: color var(--transition); }
+    .nav.scrolled .nav-logo, .nav.scrolled .nav-links a { color: var(--text-dark); }
+    .nav.scrolled .nav-links a:hover { color: var(--ion); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { font-size: 0.875rem; font-weight: 600; position: relative; padding: 4px 0; }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--ion); transition: width var(--transition); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { padding: 10px 24px; border-radius: var(--radius-full); font-size: 0.875rem; font-weight: 700; transition: all var(--transition); background: var(--ion); color: white !important; }
+    .nav-cta:hover { background: var(--ion-dark); transform: scale(1.03); }
+    .nav.scrolled .nav-cta { background: var(--ion); color: white !important; }
+    .nav-hamburger { display: none; padding: 8px; border-radius: 8px; color: white; transition: color var(--transition); }
+    .nav.scrolled .nav-hamburger { color: var(--text-dark); }
+
+    /* Mobile Nav */
+    .mobile-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+    .mobile-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 85%; max-width: 360px; z-index: 201; background: white; transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; }
+    .mobile-drawer.open { transform: translateX(0); }
+    .mobile-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; border-bottom: 1px solid #f1f5f9; }
+    .mobile-drawer-header .nav-logo span, .mobile-drawer-header .nav-logo svg { color: var(--ion); }
+    .mobile-drawer-body { flex: 1; padding: 1.5rem; overflow-y: auto; }
+    .mobile-drawer-body a { display: flex; align-items: center; justify-content: space-between; padding: 1rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 1rem; color: #334155; transition: background var(--transition); }
+    .mobile-drawer-body a:hover { background: #f1f5f9; }
+    .mobile-drawer-footer { padding: 1.5rem; border-top: 1px solid #f1f5f9; background: #f8fafc; }
+    .mobile-drawer-footer button { width: 100%; padding: 1rem; background: var(--ion); color: white; font-weight: 700; border-radius: var(--radius-sm); font-size: 1rem; }
+
+    /* ── Hero ── */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; background: var(--bg-deep); padding-top: 5rem; }
+    .hero-bg-img { position: absolute; inset: 0; background: url('assets/hero-bg.png') center center / cover no-repeat; opacity: 0.35; pointer-events: none; }
+    .hero-bg-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,6,23,0.5) 0%, rgba(2,6,23,0.85) 50%, var(--bg-deep) 100%); pointer-events: none; }
+    .hero-grid { position: absolute; inset: 0; background-image: radial-gradient(rgba(148,163,184,0.05) 1px, transparent 1px); background-size: 32px 32px; pointer-events: none; z-index: 1; }
+    .hero-glow-1 { position: absolute; top: 15%; left: 10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,137,136,0.18), transparent 70%); border-radius: 50%; pointer-events: none; filter: blur(60px); animation: hero-float-1 8s ease-in-out infinite; z-index: 1; }
+    .hero-glow-2 { position: absolute; bottom: 15%; right: 10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(99,102,241,0.12), transparent 70%); border-radius: 50%; pointer-events: none; filter: blur(60px); animation: hero-float-2 10s ease-in-out infinite; z-index: 1; }
+    .hero-glow-3 { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(0,137,136,0.06), transparent 60%); border-radius: 50%; pointer-events: none; filter: blur(80px); z-index: 1; }
+    @keyframes hero-float-1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -20px) scale(1.05); } }
+    @keyframes hero-float-2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-25px, 15px) scale(1.08); } }
+
+    /* Particles */
+    .hero-particles { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+    .particle { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: var(--ion-light); opacity: 0; animation: particle-drift linear infinite; }
+    @keyframes particle-drift {
+      0% { opacity: 0; transform: translateY(0) translateX(0); }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { opacity: 0; transform: translateY(-100vh) translateX(40px); }
+    }
+
+    /* Staggered entrance */
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 2rem 0 6rem; }
+    .hero-fade { opacity: 0; transform: translateY(28px); animation: hero-enter 0.9s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .hero-fade-1 { animation-delay: 0.15s; }
+    .hero-fade-2 { animation-delay: 0.35s; }
+    .hero-fade-3 { animation-delay: 0.55s; }
+    .hero-fade-4 { animation-delay: 0.75s; }
+    @keyframes hero-enter { to { opacity: 1; transform: translateY(0); } }
+
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: var(--radius-full); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(12px); margin-bottom: 2rem; }
+    .hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px rgba(34,197,94,0.25); animation: badge-pulse 2.5s ease-in-out infinite; }
+    @keyframes badge-pulse { 0%, 100% { box-shadow: 0 0 0 3px rgba(34,197,94,0.25); } 50% { box-shadow: 0 0 0 7px rgba(34,197,94,0.08); } }
+    .hero-badge span { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ion-light); }
+    .hero h1 { font-size: clamp(2.75rem, 7vw, 5rem); font-weight: 800; line-height: 1.08; margin-bottom: 1.5rem; letter-spacing: -0.02em; color: white; }
+    .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--ion-light), var(--cyan), var(--blue), var(--indigo), var(--ion-light)); background-size: 300% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 6s ease-in-out infinite; }
+    @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    .hero-sub { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--text-secondary); max-width: 680px; margin: 0 auto 2.5rem; line-height: 1.8; font-weight: 400; }
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius-sm); font-size: 0.9375rem; font-weight: 700; transition: all var(--transition); cursor: pointer; }
+    .btn-primary { background: var(--ion); color: white; box-shadow: 0 0 30px -8px rgba(0,137,136,0.4); position: relative; overflow: hidden; }
+    .btn-primary::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); transform: translateX(-100%); transition: none; }
+    .btn-primary:hover::after { animation: btn-shimmer 0.8s ease forwards; }
+    @keyframes btn-shimmer { to { transform: translateX(100%); } }
+    .btn-primary:hover { background: var(--ion-dark); transform: translateY(-2px); box-shadow: 0 8px 40px -8px rgba(0,137,136,0.5); }
+    .btn-secondary { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.15); }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+    .btn svg { width: 18px; height: 18px; }
+    .hero-stats { position: absolute; bottom: 0; left: 0; right: 0; border-top: 1px solid rgba(255,255,255,0.06); background: rgba(2,6,23,0.65); backdrop-filter: blur(16px); z-index: 2; }
+    .hero-stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; padding: 1.25rem 0; }
+    .hero-stat { display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .hero-stat-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
+    .hero-stat-icon svg { width: 16px; height: 16px; color: var(--text-secondary); }
+    .hero-stat-text { text-align: left; }
+    .hero-stat-label { font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em; color: var(--text-muted); }
+    .hero-stat-value { font-size: 0.8125rem; font-weight: 600; color: var(--text-secondary); }
+
+    /* ── ION Labs ── */
+    .ion-labs { padding: 6rem 0; background: var(--bg-light); color: var(--text-dark); }
+    .labs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .lab-card { padding: 2rem; border-radius: var(--radius); border: 1px solid #e2e8f0; background: #f8fafc; transition: all var(--transition); cursor: default; }
+    .lab-card:hover { background: white; border-color: transparent; box-shadow: 0 16px 48px rgba(0,0,0,0.08); transform: translateY(-4px); }
+    .lab-card-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+    .lab-card-icon svg { width: 24px; height: 24px; }
+    .lab-card-icon--indigo { background: rgba(99,102,241,0.1); color: var(--indigo); }
+    .lab-card-icon--teal { background: var(--ion-glow); color: var(--ion); }
+    .lab-card-icon--purple { background: rgba(168,85,247,0.1); color: var(--purple); }
+    .lab-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-dark); }
+    .lab-card p { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.25rem; }
+    .lab-card-bullets { display: flex; flex-direction: column; gap: 8px; }
+    .lab-card-bullets li { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 500; color: #475569; }
+    .lab-card-bullets li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .lab-card:nth-child(1) .lab-card-bullets li::before { background: var(--indigo); }
+    .lab-card:nth-child(2) .lab-card-bullets li::before { background: var(--ion); }
+    .lab-card:nth-child(3) .lab-card-bullets li::before { background: var(--purple); }
+
+
+
+    /* ── Tech Marquee ── */
+    .marquee-section { padding: 3.5rem 0; background: var(--bg-muted); border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; overflow: hidden; position: relative; }
+    .marquee-fade-l, .marquee-fade-r { position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; pointer-events: none; }
+    .marquee-fade-l { left: 0; background: linear-gradient(to right, var(--bg-muted), transparent); }
+    .marquee-fade-r { right: 0; background: linear-gradient(to left, var(--bg-muted), transparent); }
+    .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item { display: flex; align-items: center; justify-content: center; padding: 0 2rem; flex-shrink: 0; }
+    .marquee-item img { height: 36px; width: auto; max-width: 56px; filter: grayscale(1); opacity: 0.35; transition: all 0.3s; }
+    .marquee-item:hover img { filter: grayscale(0); opacity: 1; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ── Tech Cloud ── */
+    .tech-cloud { padding: 6rem 0; background: var(--bg-dark); }
+    .engagement-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 4rem; }
+    .engage-card { padding: 1.75rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-card); transition: all var(--transition); cursor: default; position: relative; overflow: hidden; }
+    .engage-card:hover { border-color: var(--border-hover); background: rgba(30,41,59,0.6); transform: translateY(-2px); }
+    .engage-card-popular { position: absolute; top: 1rem; right: 1rem; padding: 3px 10px; border-radius: var(--radius-full); font-size: 10px; font-weight: 700; background: var(--ion-glow); color: var(--ion-light); border: 1px solid rgba(0,137,136,0.3); letter-spacing: 0.05em; text-transform: uppercase; }
+    .engage-card-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
+    .engage-card-icon svg { width: 20px; height: 20px; color: var(--ion-light); }
+    .engage-card h3 { font-size: 1.0625rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+    .engage-card p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem; }
+    .engage-card-fee { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+
+    .roles-section { margin-top: 1rem; }
+    .roles-section h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center; color: var(--text); }
+    .roles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .roles-col h4 { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ion-light); margin-bottom: 1rem; }
+    .roles-col ul { display: flex; flex-direction: column; gap: 0.5rem; }
+    .roles-col li { font-size: 0.875rem; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
+    .roles-col li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--text-muted); flex-shrink: 0; }
+
+    /* ── Projects ── */
+    .projects { padding: 6rem 0; background: var(--bg-deep); border-top: 1px solid var(--border); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 1.5rem; }
+    .project-card { padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); background: linear-gradient(135deg, rgba(30,41,59,0.7), rgba(15,23,42,0.9)); position: relative; overflow: hidden; transition: all var(--transition); cursor: default; }
+    .project-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.3); }
+    .project-card-accent { position: absolute; top: 0; left: 0; width: 3px; height: 100%; border-radius: var(--radius) 0 0 var(--radius); }
+    .project-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.875rem; }
+    .project-card-cat { padding: 3px 10px; border-radius: var(--radius-full); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .project-card-status { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-muted); }
+    .project-card-status-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .project-card h3 { font-size: 1.0625rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; line-height: 1.4; }
+    .project-card p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem; }
+    .project-card-stack { display: flex; flex-wrap: wrap; gap: 4px; }
+    .project-card-stack span { display: inline-block; padding: 2px 9px; border-radius: var(--radius-full); background: rgba(148,163,184,0.08); color: var(--text-secondary); font-size: 11px; font-weight: 500; border: 1px solid rgba(148,163,184,0.12); }
+    .projects-note { text-align: center; font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── How We Work ── */
+    .how-we-work { padding: 6rem 0; background: var(--bg-light); color: var(--text-dark); }
+    .process-timeline { display: flex; align-items: flex-start; justify-content: space-between; position: relative; padding: 2rem 0; }
+    .process-timeline::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 2px; background: #e2e8f0; z-index: 0; }
+    .timeline-step { text-align: center; flex: 1; position: relative; z-index: 1; }
+    .timeline-step-num { width: 56px; height: 56px; border-radius: 50%; background: white; border: 2px solid var(--ion); color: var(--ion); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.125rem; font-weight: 800; position: relative; transition: all var(--transition); }
+    .timeline-step:hover .timeline-step-num { background: var(--ion); color: white; box-shadow: 0 0 0 6px var(--ion-glow); }
+    .timeline-step h4 { font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--text-dark); }
+    .timeline-step p { font-size: 0.8125rem; color: var(--text-muted); max-width: 160px; margin: 0 auto; line-height: 1.5; }
+
+    /* ── About ── */
+    .about { padding: 6rem 0; background: var(--bg-dark); }
+    .about-text { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.85; max-width: 720px; margin: 0 auto 3rem; text-align: center; }
+    .offices-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 640px; margin: 0 auto; }
+    .office-card { padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-card); display: flex; gap: 1rem; align-items: flex-start; transition: all var(--transition); }
+    .office-card:hover { border-color: var(--border-hover); }
+    .office-flag { width: 28px; height: auto; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+    .office-card h4 { font-size: 0.9375rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+    .office-card p { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── Careers ── */
+    .careers { padding: 6rem 0; background: var(--bg-light); color: var(--text-dark); }
+    .perks-row { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .perk { display: flex; align-items: center; gap: 10px; font-size: 0.9375rem; font-weight: 600; color: #475569; }
+    .perk-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: var(--ion-glow); color: var(--ion); }
+    .perk-icon svg { width: 18px; height: 18px; }
+    .jobs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 2.5rem; }
+    .job-card { padding: 1.5rem; border-radius: var(--radius); border: 1px solid #e2e8f0; background: white; transition: all var(--transition); }
+    .job-card:hover { border-color: var(--ion); box-shadow: 0 8px 24px rgba(0,137,136,0.08); transform: translateY(-2px); }
+    .job-card h4 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .job-card-meta { font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .job-card-apply { display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; font-weight: 700; color: var(--ion); transition: gap var(--transition); }
+    .job-card:hover .job-card-apply { gap: 10px; }
+    .job-card-apply svg { width: 16px; height: 16px; }
+    .careers-bottom { text-align: center; }
+    .careers-bottom a { color: var(--ion); font-weight: 700; font-size: 0.9375rem; border-bottom: 2px solid transparent; transition: border-color var(--transition); }
+    .careers-bottom a:hover { border-color: var(--ion); }
+
+    /* ── Footer ── */
+    .footer { padding: 5rem 0 0; background: var(--bg-deep); border-top: 1px solid var(--border); }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.7; margin: 1rem 0 1.5rem; max-width: 260px; }
+    .footer-social a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); transition: all var(--transition); }
+    .footer-social a:hover { background: var(--ion); border-color: var(--ion); color: white; }
+    .footer-social a svg { width: 18px; height: 18px; }
+    .footer-col h5 { font-size: 0.8125rem; font-weight: 700; color: white; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .footer-col a { display: block; font-size: 0.8125rem; color: var(--text-muted); padding: 4px 0; transition: color var(--transition); cursor: pointer; }
+    .footer-col a:hover { color: var(--ion-light); }
+    .footer-office { display: flex; gap: 10px; margin-bottom: 1rem; align-items: flex-start; }
+    .footer-office img { width: 20px; border-radius: 2px; margin-top: 3px; }
+    .footer-office-text h6 { font-size: 0.8125rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 2px; }
+    .footer-office-text p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+    .footer-email { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--text-secondary); margin-top: 1rem; transition: color var(--transition); }
+    .footer-email:hover { color: white; }
+    .footer-email svg { width: 16px; height: 16px; }
+    .footer-bottom { padding: 1.5rem 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ── WhatsApp FAB ── */
+    .wa-fab { position: fixed; bottom: 24px; right: 24px; z-index: 90; display: flex; align-items: center; gap: 10px; background: #25d366; color: white; padding: 13px 22px; border-radius: var(--radius-full); box-shadow: 0 4px 20px rgba(37,211,102,0.35); font-size: 14px; font-weight: 600; text-decoration: none; transition: all var(--transition); animation: wa-pulse 3s ease-in-out infinite; }
+    .wa-fab:hover { transform: scale(1.05); box-shadow: 0 6px 32px rgba(37,211,102,0.6); }
+    .wa-fab svg { width: 22px; height: 22px; flex-shrink: 0; }
+    @keyframes wa-pulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.35); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.6), 0 0 0 8px rgba(37,211,102,0.08); } }
+
+    /* ── Contact Modal ── */
+    .modal-overlay { position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(15,23,42,0.75); backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .modal { background: white; border-radius: var(--radius); max-width: 480px; width: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.3); transform: scale(0.95) translateY(12px); transition: transform 0.3s; overflow: hidden; }
+    .modal-overlay.open .modal { transform: scale(1) translateY(0); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; border-bottom: 1px solid #f1f5f9; background: #f8fafc; }
+    .modal-header h3 { font-size: 1.125rem; font-weight: 700; color: var(--text-dark); }
+    .modal-close { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: background var(--transition); color: var(--text-muted); }
+    .modal-close:hover { background: #e2e8f0; }
+    .modal-close svg { width: 20px; height: 20px; }
+    .modal-body { padding: 1.5rem; }
+    .modal-body h4 { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.5rem; text-align: center; }
+    .modal-body > p { text-align: center; color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9375rem; }
+    .modal-option { width: 100%; display: flex; align-items: center; padding: 1rem; border: 1px solid #e2e8f0; border-radius: var(--radius-sm); margin-bottom: 0.75rem; text-align: left; transition: all var(--transition); cursor: pointer; }
+    .modal-option:hover { border-color: var(--ion); background: rgba(0,137,136,0.03); }
+    .modal-option-icon { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; flex-shrink: 0; }
+    .modal-option-icon svg { width: 22px; height: 22px; }
+    .modal-option-text strong { display: block; font-size: 0.9375rem; color: var(--text-dark); margin-bottom: 2px; }
+    .modal-option-text span { font-size: 0.8125rem; color: var(--text-muted); }
+    .modal-option-arrow { margin-left: auto; color: #cbd5e1; }
+    .modal-option-arrow svg { width: 18px; height: 18px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .labs-grid, .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero h1 { font-size: clamp(2.25rem, 8vw, 3.5rem); }
+      .hero-stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .labs-grid, .engagement-grid, .projects-grid, .jobs-grid, .offices-grid { grid-template-columns: 1fr; }
+      .roles-grid { grid-template-columns: 1fr; }
+      .process-timeline { flex-direction: column; gap: 1.5rem; align-items: center; }
+      .process-timeline::before { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .perks-row { flex-direction: column; align-items: center; }
+
+      .process-arrow { transform: rotate(90deg); }
+    }
+    @media (max-width: 480px) {
+      .hero-stats-inner { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .btn { width: 100%; justify-content: center; }
     }
   </style>
+</head>
+<body>
+
+  <!-- ════════════════ NAVIGATION ════════════════ -->
+  <nav class="nav" id="main-nav">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo" onclick="scrollToTop(event)">
+        <svg viewBox="0 0 100 100" fill="currentColor" aria-label="IONWARD Logo">
+          <path d="M50 10 A40 40 0 1 0 50 90 A40 40 0 1 0 50 10 Z M50 30 A20 20 0 1 1 50 70 A20 20 0 1 1 50 30 Z" fill-rule="evenodd"/>
+          <circle cx="25" cy="25" r="12" opacity="0.8"/>
+          <circle cx="75" cy="75" r="12" opacity="0.8"/>
+        </svg>
+        <span>IONWARD</span>
+      </a>
+      <div class="nav-links">
+        <a href="#ion-labs">ION Labs</a>
+        <a href="#tech-cloud">Tech Cloud</a>
+        <a href="#about">About</a>
+        <a href="#careers">Careers</a>
+        <button class="nav-cta" onclick="openModal()">Start a Project</button>
+      </div>
+      <button class="nav-hamburger" onclick="openMobileNav()" aria-label="Open Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-overlay" id="mobile-overlay" onclick="closeMobileNav()"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="nav-logo">
+        <svg viewBox="0 0 100 100" fill="currentColor" style="height:28px;width:28px;color:var(--ion)"><path d="M50 10 A40 40 0 1 0 50 90 A40 40 0 1 0 50 10 Z M50 30 A20 20 0 1 1 50 70 A20 20 0 1 1 50 30 Z" fill-rule="evenodd"/><circle cx="25" cy="25" r="12" opacity="0.8"/><circle cx="75" cy="75" r="12" opacity="0.8"/></svg>
+        <span>IONWARD</span>
+      </div>
+      <button onclick="closeMobileNav()" aria-label="Close Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="mobile-drawer-body">
+      <a href="#" onclick="mobileNav(event)">Home</a>
+      <a href="#ion-labs" onclick="mobileNav(event)">ION Labs</a>
+      <a href="#tech-cloud" onclick="mobileNav(event)">Tech Cloud</a>
+      <a href="#about" onclick="mobileNav(event)">About</a>
+      <a href="#careers" onclick="mobileNav(event)">Careers</a>
+    </div>
+    <div class="mobile-drawer-footer">
+      <button onclick="closeMobileNav(); openModal();">Start a Project</button>
+    </div>
+  </div>
+
+  <!-- ════════════════ HERO ════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-img"></div>
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-particles" id="hero-particles"></div>
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-glow-3"></div>
+    <div class="container hero-content">
+      <div class="hero-badge hero-fade hero-fade-1">
+        <div class="hero-badge-dot"></div>
+        <span>Singapore HQ &middot; Southeast Asia Execution</span>
+      </div>
+      <h1 class="hero-fade hero-fade-2">Software that scales.<br><em>Talent that stays.</em></h1>
+      <p class="hero-sub hero-fade hero-fade-3">We build world-class software products and connect businesses with elite tech talent across Southeast Asia. From custom development to full employer-of-record solutions.</p>
+      <div class="hero-ctas hero-fade hero-fade-4">
+        <a href="#ion-labs" class="btn btn-primary">Explore ION Labs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#tech-cloud" class="btn btn-secondary">Hire Talent <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="container hero-stats-inner">
+        <div class="hero-stat">
+          <div class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+          <div class="hero-stat-text"><div class="hero-stat-label">Founded</div><div class="hero-stat-value">2026</div></div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div class="hero-stat-text"><div class="hero-stat-label">Presence</div><div class="hero-stat-value">SG &amp; VN</div></div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="hero-stat-text"><div class="hero-stat-label">Security</div><div class="hero-stat-value">Enterprise Grade</div></div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <div class="hero-stat-text"><div class="hero-stat-label">Speed</div><div class="hero-stat-value">Rapid Deployment</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ ION LABS ════════════════ -->
+  <section class="ion-labs" id="ion-labs">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge section-badge--teal">ION LABS</div>
+        <h2 class="section-title" style="color:var(--text-dark)">End-to-End Software Development</h2>
+        <p class="section-desc" style="color:var(--text-muted)">ION Labs is our dedicated R&amp;D and Custom Software Development unit. We take full ownership of the product lifecycle &mdash; from architectural design to deployment &mdash; acting as your technical co-founding team.</p>
+      </div>
+      <div class="labs-grid">
+        <div class="lab-card reveal">
+          <div class="lab-card-icon lab-card-icon--indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+          <h3>Custom Software</h3>
+          <p>We build scalable SaaS platforms, mobile applications, and enterprise dashboards from scratch.</p>
+          <ul class="lab-card-bullets"><li>MVP Development</li><li>Enterprise Web Apps</li><li>API Integration</li></ul>
+        </div>
+        <div class="lab-card reveal">
+          <div class="lab-card-icon lab-card-icon--teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/><path d="M4 9h1M4 15h1M19 9h1M19 15h1"/></svg></div>
+          <h3>FinTech &amp; AI</h3>
+          <p>Specialized engineering for complex, high-stakes environments requiring security and performance.</p>
+          <ul class="lab-card-bullets"><li>Core Banking Systems</li><li>AI &amp; ML Models</li><li>Trading Engines</li></ul>
+        </div>
+        <div class="lab-card reveal">
+          <div class="lab-card-icon lab-card-icon--purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Managed Pods</h3>
+          <p>Don't just hire a dev; hire a team. Self-managed pods that deliver outcomes, not just hours.</p>
+          <ul class="lab-card-bullets"><li>PM Included</li><li>QA &amp; Design Integrated</li><li>Guaranteed Delivery</li></ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════ TECH MARQUEE ════════════════ -->
+  <div class="marquee-section">
+    <div class="marquee-fade-l"></div>
+    <div class="marquee-fade-r"></div>
+    <div class="marquee-track" id="marquee-track"></div>
+  </div>
+
+  <!-- ════════════════ TECH CLOUD ════════════════ -->
+  <section class="tech-cloud" id="tech-cloud">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge section-badge--teal">TECH CLOUD</div>
+        <h2 class="section-title">Talent Solutions, Your Way</h2>
+        <p class="section-desc" style="color:var(--text-secondary)">Scale your team with elite talent from Southeast Asia. Choose the engagement model that fits &mdash; from recruitment to full employer-of-record services.</p>
+      </div>
+      <div class="engagement-grid">
+        <div class="engage-card reveal" style="--delay:0ms">
+          <span class="engage-card-popular">Most Popular</span>
+          <div class="engage-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div>
+          <h3>Full Staff Augmentation</h3>
+          <p>Dedicated engineers embedded in your team. We handle employment, payroll, and HR.</p>
+          <div class="engage-card-fee">Monthly retainer</div>
+        </div>
+        <div class="engage-card reveal">
+          <div class="engage-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+          <h3>Basic Agency</h3>
+          <p>We source and vet top candidates. You hire directly.</p>
+          <div class="engage-card-fee">One-time fee</div>
+        </div>
+        <div class="engage-card reveal">
+          <div class="engage-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3>Full EOR (Vietnam)</h3>
+          <p>Complete Employer of Record: work visa, payroll, tax, benefits, and compliance.</p>
+          <div class="engage-card-fee">Monthly per employee</div>
+        </div>
+        <div class="engage-card reveal">
+          <div class="engage-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
+          <h3>Independent Contractor</h3>
+          <p>We engage talent as independent contractors. You direct the work, we handle admin.</p>
+          <div class="engage-card-fee">Monthly admin fee</div>
+        </div>
+      </div>
+      <div class="roles-section reveal">
+        <h3>Roles We Fill</h3>
+        <div class="roles-grid">
+          <div class="roles-col">
+            <h4>Tech Roles</h4>
+            <ul><li>Solution Architects</li><li>Full Stack Developers</li><li>DevOps Engineers</li><li>Frontend Developers</li><li>Backend Developers</li><li>Mobile Developers</li><li>QA Engineers</li><li>UI/UX Designers</li></ul>
+          </div>
+          <div class="roles-col">
+            <h4>Non-Tech Roles</h4>
+            <ul><li>Project Managers</li><li>Business Analysts</li><li>Scrum Masters</li><li>Customer Support</li><li>HR &amp; Admin</li><li>Data Entry Specialists</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ LIVE PROJECTS ════════════════ -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge section-badge--white">LIVE PROJECTS</div>
+        <h2 class="section-title">What We're Building Right Now</h2>
+        <p class="section-desc" style="color:var(--text-secondary)">Real projects at scale. Our engineers are actively shipping across FinTech, AI/ML, and enterprise platforms &mdash; client names kept confidential under NDA.</p>
+      </div>
+      <div class="projects-grid" id="projects-grid"></div>
+      <p class="projects-note">All projects are under NDA. Technology stacks and project types are shared for capability demonstration only.</p>
+    </div>
+  </section>
+
+  <!-- ════════════════ HOW WE WORK ════════════════ -->
+  <section class="how-we-work" id="process">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge section-badge--teal">OUR PROCESS</div>
+        <h2 class="section-title" style="color:var(--text-dark)">How We Work</h2>
+      </div>
+      <div class="process-timeline reveal">
+        <div class="timeline-step"><div class="timeline-step-num">1</div><h4>Discovery</h4><p>Understanding your goals, constraints, and vision</p></div>
+        <div class="timeline-step"><div class="timeline-step-num">2</div><h4>Design</h4><p>Architecture, wireframes, and technical planning</p></div>
+        <div class="timeline-step"><div class="timeline-step-num">3</div><h4>Build</h4><p>Agile sprints with continuous delivery</p></div>
+        <div class="timeline-step"><div class="timeline-step-num">4</div><h4>Test</h4><p>Comprehensive QA and security audits</p></div>
+        <div class="timeline-step"><div class="timeline-step-num">5</div><h4>Launch</h4><p>Deployment, monitoring, and ongoing support</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ ABOUT ════════════════ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge section-badge--teal">ABOUT US</div>
+        <h2 class="section-title">Our Story</h2>
+      </div>
+      <p class="about-text reveal">Founded in Singapore in 2026, IONWARD bridges world-class business standards with elite technical talent across Southeast Asia. We started with a simple belief: great software needs great people, and great people deserve great opportunities. Today, we serve clients across FinTech, enterprise, and deep tech &mdash; delivering production-grade solutions from our offices in Singapore and Vietnam.</p>
+      <div class="offices-grid reveal">
+        <div class="office-card">
+          <img src="https://flagcdn.com/w40/sg.png" alt="Singapore Flag" class="office-flag">
+          <div>
+            <h4>Singapore HQ</h4>
+            <p>60 Paya Lebar Road, #06-28,<br>Paya Lebar Square, Singapore 409051</p>
+          </div>
+        </div>
+        <div class="office-card">
+          <img src="https://flagcdn.com/w40/vn.png" alt="Vietnam Flag" class="office-flag">
+          <div>
+            <h4>Vietnam Hub</h4>
+            <p>Bach Dang Complex, Hai Chau,<br>Da Nang City, Vietnam</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ CAREERS ════════════════ -->
+  <section class="careers" id="careers">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-badge section-badge--teal">WE'RE HIRING</div>
+        <h2 class="section-title" style="color:var(--text-dark)">More Than a Job</h2>
+        <p class="section-desc" style="color:var(--text-muted)">Join a team where your work ships to production, your voice matters, and growth isn't just a buzzword.</p>
+      </div>
+      <div class="perks-row reveal">
+        <div class="perk"><div class="perk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>Cutting-edge tech</div>
+        <div class="perk"><div class="perk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>Remote-friendly</div>
+        <div class="perk"><div class="perk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>Competitive pay</div>
+      </div>
+      <div class="jobs-grid reveal">
+        <div class="job-card">
+          <h4>Senior Full Stack Developer</h4>
+          <div class="job-card-meta">Ho Chi Minh City &middot; Full-time</div>
+          <a href="mailto:careers@ionward.com?subject=Application: Senior Full Stack Developer" class="job-card-apply">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="job-card">
+          <h4>DevOps Engineer</h4>
+          <div class="job-card-meta">Da Nang &middot; Full-time</div>
+          <a href="mailto:careers@ionward.com?subject=Application: DevOps Engineer" class="job-card-apply">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="job-card">
+          <h4>UI/UX Designer</h4>
+          <div class="job-card-meta">Remote &middot; Full-time</div>
+          <a href="mailto:careers@ionward.com?subject=Application: UI/UX Designer" class="job-card-apply">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <div class="careers-bottom reveal">
+        <a href="mailto:careers@ionward.com?subject=Open Application - CV Submission">Don't see your role? Send us your CV &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ FOOTER ════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="color:white; margin-bottom: 0;">
+            <svg viewBox="0 0 100 100" fill="currentColor" style="height:32px;width:32px"><path d="M50 10 A40 40 0 1 0 50 90 A40 40 0 1 0 50 10 Z M50 30 A20 20 0 1 1 50 70 A20 20 0 1 1 50 30 Z" fill-rule="evenodd"/><circle cx="25" cy="25" r="12" opacity="0.8"/><circle cx="75" cy="75" r="12" opacity="0.8"/></svg>
+            <span>IONWARD</span>
+          </div>
+          <p>Bridging world-class business standards with elite technical talent across Southeast Asia.</p>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/company/ionward/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="#ion-labs">ION Labs</a>
+          <a href="#tech-cloud">Tech Cloud</a>
+          <a href="#tech-cloud">Staff Augmentation</a>
+          <a href="#tech-cloud">EOR Services</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#about">About</a>
+          <a href="#careers">Careers</a>
+          <a href="/privacy" class="legal-link">Privacy Policy</a>
+          <a href="/terms" class="legal-link">Terms &amp; Conditions</a>
+        </div>
+        <div class="footer-col">
+          <h5>Offices</h5>
+          <div class="footer-office">
+            <img src="https://flagcdn.com/w20/sg.png" alt="SG">
+            <div class="footer-office-text"><h6>Singapore HQ</h6><p>60 Paya Lebar Road, #06-28,<br>Paya Lebar Square, 409051</p></div>
+          </div>
+          <div class="footer-office">
+            <img src="https://flagcdn.com/w20/vn.png" alt="VN">
+            <div class="footer-office-text"><h6>Vietnam Hub</h6><p>Bach Dang Complex, Hai Chau,<br>Da Nang City, Vietnam</p></div>
+          </div>
+          <a href="mailto:hello@ionward.com" class="footer-email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg> hello@ionward.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 IONWARD LTD. All rights reserved.</p>
+        <span>Singapore &middot; Vietnam</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════════════ WHATSAPP FAB ════════════════ -->
+  <a href="https://wa.me/6512345678?text=Hi%20IONWARD!%20I'd%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" class="wa-fab" title="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    <span>Chat with us</span>
+  </a>
+
+  <!-- ════════════════ CONTACT MODAL ════════════════ -->
+  <div class="modal-overlay" id="contact-modal">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Let's Connect</h3>
+        <button class="modal-close" onclick="closeModal()" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="modal-body">
+        <h4>How can we help?</h4>
+        <p>Choose the service that best fits your needs.</p>
+        <button class="modal-option" onclick="contactEmail('ION Labs - Custom Software Development')">
+          <div class="modal-option-icon" style="background:rgba(99,102,241,0.1);color:var(--indigo)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+          <div class="modal-option-text"><strong>ION Labs</strong><span>I need a project built from scratch.</span></div>
+          <div class="modal-option-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </button>
+        <button class="modal-option" onclick="contactEmail('Tech Cloud - Staff Augmentation / Talent Hire')">
+          <div class="modal-option-icon" style="background:var(--ion-glow);color:var(--ion)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div>
+          <div class="modal-option-text"><strong>Tech Cloud</strong><span>I need to hire developers or talent.</span></div>
+          <div class="modal-option-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </button>
+        <button class="modal-option" onclick="contactEmail('General Inquiry')">
+          <div class="modal-option-icon" style="background:rgba(148,163,184,0.1);color:var(--text-muted)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></div>
+          <div class="modal-option-text"><strong>General Inquiry</strong><span>Partnerships, careers, or other questions.</span></div>
+          <div class="modal-option-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════ SCRIPTS ════════════════ -->
+  <script>
+    /* ── Data ── */
+    var TECHS = [
+      {name:'React',slug:'react'},{name:'Node.js',slug:'nodedotjs'},{name:'TypeScript',slug:'typescript'},
+      {name:'Next.js',slug:'nextdotjs'},{name:'Python',slug:'python'},{name:'Go',slug:'go'},
+      {name:'PostgreSQL',slug:'postgresql'},{name:'MongoDB',slug:'mongodb'},{name:'Docker',slug:'docker'},
+      {name:'Kubernetes',slug:'kubernetes'},{name:'Flutter',slug:'flutter'},{name:'GraphQL',slug:'graphql'},
+      {name:'TensorFlow',slug:'tensorflow'},{name:'AWS',slug:'amazonwebservices'}
+    ];
+
+    var PROJECTS = [
+      {cat:'FinTech',cc:'#008988',bg:'rgba(0,137,136,0.1)',title:'Core Banking Platform',desc:'Multi-currency ledger with real-time transaction processing & regulatory reporting for a digital bank.',stack:['Spring Boot','React','PostgreSQL','Kafka','AWS'],status:'In Progress',sc:'#22c55e'},
+      {cat:'AI / ML',cc:'#8b5cf6',bg:'rgba(139,92,246,0.1)',title:'KYC / AML Intelligence Engine',desc:'AI-powered identity verification and anti-money laundering detection with real-time risk scoring.',stack:['Python','FastAPI','TensorFlow','Redis','Docker'],status:'Testing',sc:'#3b82f6'},
+      {cat:'HR Tech',cc:'#f59e0b',bg:'rgba(245,158,11,0.1)',title:'HRIS & Payroll Engine',desc:'Integrated HR platform with automated payroll, leave management, and multi-country compliance.',stack:['Next.js','Node.js','Supabase','TypeScript','Docker'],status:'Deployed',sc:'#06b6d4'},
+      {cat:'FinTech',cc:'#008988',bg:'rgba(0,137,136,0.1)',title:'Crypto Exchange Infrastructure',desc:'High-frequency trading engine and order book management for a regulated digital asset exchange.',stack:['Go','Kafka','Kubernetes','gRPC','TimescaleDB'],status:'In Progress',sc:'#22c55e'},
+      {cat:'RegTech',cc:'#ec4899',bg:'rgba(236,72,153,0.1)',title:'Regulatory Compliance Suite',desc:'Automated MAS/SEC reporting and audit trail management with a configurable rule engine.',stack:['Java','Spring Boot','Oracle DB','Angular','Jenkins'],status:'Testing',sc:'#3b82f6'},
+      {cat:'Data Platform',cc:'#f97316',bg:'rgba(249,115,22,0.1)',title:'Real-time Trading Dashboard',desc:'Low-latency visualization for live market feeds, portfolio analytics, and risk exposure monitoring.',stack:['React','WebSocket','TypeScript','D3.js','ClickHouse'],status:'In Progress',sc:'#22c55e'}
+    ];
+
+    /* ── Hero Particles ── */
+    (function(){
+      var container = document.getElementById('hero-particles');
+      if (!container) return;
+      var count = 25;
+      for (var i = 0; i < count; i++) {
+        var p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.bottom = -(Math.random() * 20) + '%';
+        p.style.width = (1.5 + Math.random() * 2.5) + 'px';
+        p.style.height = p.style.width;
+        p.style.animationDuration = (8 + Math.random() * 14) + 's';
+        p.style.animationDelay = (Math.random() * 10) + 's';
+        container.appendChild(p);
+      }
+    })();
+
+    /* ── Render Marquee ── */
+    (function(){
+      var track = document.getElementById('marquee-track');
+      var html = '';
+      for (var r = 0; r < 2; r++) {
+        for (var i = 0; i < TECHS.length; i++) {
+          html += '<div class="marquee-item"><img src="https://cdn.simpleicons.org/' + TECHS[i].slug + '" alt="' + TECHS[i].name + '" title="' + TECHS[i].name + '" loading="lazy"></div>';
+        }
+      }
+      track.innerHTML = html;
+    })();
+
+    /* ── Render Projects ── */
+    (function(){
+      var grid = document.getElementById('projects-grid');
+      var html = '';
+      for (var i = 0; i < PROJECTS.length; i++) {
+        var p = PROJECTS[i];
+        var stacks = '';
+        for (var j = 0; j < p.stack.length; j++) stacks += '<span>' + p.stack[j] + '</span>';
+        html += '<div class="project-card reveal">'
+          + '<div class="project-card-accent" style="background:' + p.cc + '"></div>'
+          + '<div class="project-card-header">'
+          + '<span class="project-card-cat" style="background:' + p.bg + ';color:' + p.cc + ';border:1px solid ' + p.cc + '44">' + p.cat + '</span>'
+          + '<span class="project-card-status"><span class="project-card-status-dot" style="background:' + p.sc + ';box-shadow:0 0 0 3px ' + p.sc + '22"></span>' + p.status + '</span>'
+          + '</div>'
+          + '<h3>' + p.title + '</h3>'
+          + '<p>' + p.desc + '</p>'
+          + '<div class="project-card-stack">' + stacks + '</div>'
+          + '</div>';
+      }
+      grid.innerHTML = html;
+    })();
+
+    /* ── Nav Scroll ── */
+    var nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, {passive: true});
+
+    /* ── Mobile Nav ── */
+    function openMobileNav() {
+      document.getElementById('mobile-overlay').classList.add('open');
+      document.getElementById('mobile-drawer').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileNav() {
+      document.getElementById('mobile-overlay').classList.remove('open');
+      document.getElementById('mobile-drawer').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function mobileNav(e) { closeMobileNav(); }
+    function scrollToTop(e) { e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); }
+
+    /* ── Scroll Reveal ── */
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObs.unobserve(entry.target); }
+      });
+    }, {threshold: 0.1, rootMargin: '0px 0px -60px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+
+    /* ── Contact Modal ── */
+    function openModal() {
+      document.getElementById('contact-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('contact-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('contact-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+    function contactEmail(subject) {
+      window.location.href = 'mailto:hello@ionward.com?subject=' + encodeURIComponent('IONWARD Inquiry: ' + subject);
+      closeModal();
+    }
+
+    /* ── Legal Links localhost fix ── */
+    (function() {
+      var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      if (isLocal) {
+        var links = document.querySelectorAll('.legal-link');
+        for (var i = 0; i < links.length; i++) {
+          var href = links[i].getAttribute('href');
+          if (href === '/privacy') links[i].setAttribute('href', '/privacy.html');
+          else if (href === '/terms') links[i].setAttribute('href', '/terms.html');
+        }
+      }
+    })();
+  </script>
 </body>
 </html>
